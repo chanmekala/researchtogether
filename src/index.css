@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-family: 'Inter', system-ui, sans-serif;
+  --font-size: 15px;
+  color-scheme: light;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: var(--font-size); }
+
+body {
+  font-family: var(--font-family);
+  background: #ffffff;
+  color: #1e293b;
+  overflow: hidden;
+  height: 100vh;
+}
+
+#root { height: 100vh; }
+
+*:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.skip-link {
+  position: absolute; top: -100%; left: 16px; z-index: 9999;
+  padding: 8px 16px; background: #6366f1; color: white;
+  border-radius: 0 0 8px 8px; font-weight: 600; transition: top 0.2s;
+}
+.skip-link:focus { top: 0; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+
+.remote-cursor {
+  position: fixed; pointer-events: none; z-index: 9999;
+  transition: left 0.15s ease-out, top 0.15s ease-out;
+}
+.remote-cursor-arrow {
+  width: 0; height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 12px solid var(--cursor-color, #6366f1);
+  transform: rotate(-30deg);
+}
+.remote-cursor-name {
+  position: absolute; top: 14px; left: 6px;
+  font-size: 11px; font-weight: 600; padding: 2px 8px;
+  border-radius: 6px; white-space: nowrap; color: white;
+}
+
+.font-mode-sans { font-family: 'Inter', system-ui, sans-serif !important; }
+.font-mode-serif { font-family: Georgia, Cambria, 'Times New Roman', serif !important; }
+.font-mode-mono { font-family: 'SF Mono', Menlo, Monaco, monospace !important; }
+.font-mode-dyslexic { font-family: 'Comic Sans MS', 'Trebuchet MS', sans-serif !important; }
+
+.high-contrast * { border-color: #000 !important; }
+.high-contrast button:hover, .high-contrast a:hover { outline: 2px solid #000 !important; }
+
+/* Dark mode */
+.dark body, .dark #root { background: #0a0a0f; color: #e4e4e7; }
+.dark ::-webkit-scrollbar-thumb { background: #27272a; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* Selection popup animation */
+@keyframes popIn {
+  0% { opacity: 0; transform: translateX(-50%) translateY(4px) scale(0.95); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+.selection-popup { animation: popIn 0.15s ease-out; }
+
+/* Slide styles */
+.slide-card {
+  background: white; border: 1px solid #e2e8f0; border-radius: 20px;
+  padding: 48px 56px; max-width: 860px; width: 100%; margin: 24px auto;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn { animation: fadeIn 0.3s ease-out; }
+
+/* Message bubble tail */
+.msg-bubble-mine { border-radius: 18px 18px 4px 18px; }
+.msg-bubble-other { border-radius: 18px 18px 18px 4px; }
+
+/* Editor placeholder */
+.editor-area:empty::before {
+  content: 'Start writing your research document here... Use the AI Summary button to auto-generate content from your snippets, or write freely.';
+  color: #cbd5e1;
+  pointer-events: none;
+  font-style: italic;
+}
+.editor-area h1 { font-size: 1.6em; font-weight: bold; color: #1e293b; margin-bottom: 0.5em; }
+.editor-area h2 { font-size: 1.3em; font-weight: bold; color: #334155; margin-top: 1em; margin-bottom: 0.4em; }
+.editor-area h3 { font-size: 1.1em; font-weight: 600; color: #475569; margin-top: 0.8em; margin-bottom: 0.3em; }
+.editor-area blockquote { border-left: 3px solid #c7d2fe; padding-left: 1em; color: #64748b; font-style: italic; margin: 0.5em 0; }
+.editor-area ul, .editor-area ol { margin-left: 1.5em; margin-bottom: 0.5em; }
+.editor-area li { margin-bottom: 0.2em; }
+
+[data-tooltip] { position: relative; }
+[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+  padding: 6px 12px; background: #1e293b; color: white;
+  font-size: 12px; border-radius: 8px; white-space: nowrap; z-index: 1000;
+  pointer-events: none; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
