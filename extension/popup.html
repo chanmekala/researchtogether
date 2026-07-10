@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { width: 320px; padding: 16px; font-family: Inter, system-ui, sans-serif; margin: 0; }
+    h2 { font-size: 16px; color: #1e293b; margin: 0 0 12px; }
+    label { display: block; font-size: 12px; font-weight: 600; color: #64748b; margin-bottom: 4px; }
+    input { width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 13px; margin-bottom: 12px; box-sizing: border-box; }
+    button { width: 100%; padding: 10px; background: #6366f1; color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; }
+    button:hover { background: #4f46e5; }
+    .status { font-size: 11px; color: #10b981; margin-top: 8px; text-align: center; }
+    p { font-size: 11px; color: #94a3b8; margin-top: 12px; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <h2>ResearchTogether</h2>
+  <label>Project ID</label>
+  <input type="text" id="projectId" placeholder="proj-..." />
+  <label>Server URL</label>
+  <input type="text" id="serverUrl" value="http://localhost:3001" />
+  <button id="save">Save Settings</button>
+  <div class="status" id="status"></div>
+  <p>Highlight text on any page, then click "Save to ResearchTogether" to capture it into your project source library.</p>
+  <script src="popup.js"></script>
+</body>
+</html>
